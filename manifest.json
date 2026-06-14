@@ -1,0 +1,143 @@
+{
+  "name": "skill-builder-v3",
+  "version": "1.2.0",
+  "description": "自进化技能引擎——蒸馏 10 大前沿框架(Gödel Agent/EVE-Agent/Ultragoal/Engram + GEPA/HyperAgents/CRESCENT/TAPO/GVU/DGM)，P1规则自生成+P2证据链+P3独立验证+P4语义记忆",
+  "when_to_use": [
+    "用户发现skill在某环境下不工作，需要修复并确保不再复现",
+    "新建skill后需要反复调试直到稳定",
+    "skill换到新环境中使用（跨平台迁移）",
+    "任何skill相关脚本被修改后，想吸收经验防止下次再踩",
+    "用户想做深度代码分析，让系统自动发现并提出架构改进"
+  ],
+  "constitution": "constitution.md",
+  "architecture": {
+    "layers": {
+      "layer1_improvement_loop": {
+        "description": "Generate→Evaluate→Select→Integrate 四原语循环",
+        "entry": "engine/loop.py"
+      },
+      "layer2_reflect": {
+        "description": "元观察→质疑准则→提案架构变更→验证后采纳",
+        "entry": "engine/reflect.py",
+        "trigger": "僵局检测 / 元审计间隔"
+      },
+      "layer3_anchor": {
+        "description": "宪法验证 + 回滚 + 验证门控",
+        "entry": "engine/anchor.py"
+      }
+    },
+    "dual_process": {
+      "system1": {
+        "description": "快速模式匹配——秒级脚本扫描",
+        "modules": ["engine/system1/scanner.py", "engine/system1/patterns.py", "engine/system1/rules.py"]
+      },
+      "system2": {
+        "description": "深度 LLM 推理——分钟级分析",
+        "modules": ["engine/system2/deliberator.py", "engine/system2/proposer.py", "engine/system2/challenger.py"]
+      }
+    }
+  },
+  "dependencies": {
+    "runtime": [
+      {"name": "python", "constraint": ">=3.10"}
+    ],
+    "shell_tools": [
+      {"name": "bash"},
+      {"name": "grep"},
+      {"name": "sed"},
+      {"name": "find"}
+    ],
+    "optional": [
+      {"name": "pyyaml", "reason": "YAML解析（内置解析器兜底）"},
+      {"name": "node", "constraint": ">=16", "reason": "JS语法验证"}
+    ]
+  },
+  "platforms": [
+    {"os": "linux"},
+    {"os": "macos"},
+    {"os": "windows", "notes": "需 Git Bash 或 WSL"}
+  ],
+  "design_params": {
+    "stop_rounds": 2,
+    "meta_audit_interval": 5,
+    "max_iterations": 10,
+    "known_issues_ttl_versions": 5,
+    "autonomy_level": "cold_start",
+    "autonomy_graduation": {
+      "cold_start_to_supervised": {
+        "min_iteration_logs": 5,
+        "min_sessions": 2
+      },
+      "supervised_to_trusted": {
+        "min_auto_applies": 5,
+        "max_rollback_rate": 0.2,
+        "min_human_approved": 3,
+        "min_logs_since_promotion": 10
+      }
+    }
+  },
+  "file_inventory": {
+    "engine": [
+      "loop.py",
+      "reflect.py",
+      "anchor.py",
+      "memory.py",
+      "memory_index.py",
+      "evidence.py",
+      "realizability.py",
+      "blindspot.py",
+      "trace_distiller.py",
+      "causal_root.py",
+      "ask_gate.py",
+      "redteam.py",
+      "regression_guard.py",
+      "skill_composer.py",
+      "anti_gaming.py",
+      "checkpoint.py",
+      "hillclimb.py",
+      "parallel.py",
+      "bootstrap.py",
+      "hooks_bridge.py"
+    ],
+    "engine_system1": [
+      "scanner.py",
+      "patterns.py",
+      "rules.py"
+    ],
+    "engine_system2": [
+      "deliberator.py",
+      "proposer.py",
+      "challenger.py",
+      "rule_generator.py"
+    ],
+    "skills": [
+      "graph.py",
+      "signature.py",
+      "registry.py"
+    ],
+    "references": [
+      "known-issues.md",
+      "patterns.md",
+      "patterns-drafts.md",
+      "patterns-deprecated.md",
+      "pattern-evolution.jsonl",
+      "changelog-archive.json",
+      "event-schemas.md"
+    ],
+    "data": [
+      "logs/",
+      "insights/",
+      "proposals/",
+      "snapshots/",
+      "metrics/"
+    ]
+  },
+  "immune_system_status": {
+    "constitution_exists": true,
+    "patterns_exists": true,
+    "known_issues_exists": true,
+    "last_audit_iso": "2026-06-13T00:00:00Z",
+    "last_audit_rounds": 1,
+    "last_audit_findings": 5
+  }
+}

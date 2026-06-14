@@ -1,0 +1,41 @@
+[
+  {
+    "iso": "2026-06-13",
+    "version": "1.0.0",
+    "category": "init",
+    "description": "skill-builder-v3 项目初始化——六个基本原语三层架构",
+    "files_changed": ["constitution.md", "manifest.json", "skill.md", "engine/", "skills/", "references/"],
+    "patterns_involved": [],
+    "anchor": "A"
+  },
+  {
+    "iso": "2026-06-13",
+    "version": "1.1.0",
+    "category": "distillation",
+    "description": "蒸馏六大前沿自进化框架：GEPA 执行轨迹验证、HyperAgents 跨域迁移、CRESCENT 共识增强、TAPO 逐轮信用分配、GVU 验证器 SNR 门控、DGM 多样性存档",
+    "files_changed": [
+      "engine/memory.py",
+      "engine/loop.py",
+      "engine/reflect.py",
+      "engine/system1/rules.py",
+      "engine/system1/patterns.py",
+      "engine/system2/challenger.py",
+      "engine/system2/deliberator.py",
+      "skill.md",
+      "manifest.json",
+      "references/patterns.md",
+      "references/known-issues.md",
+      "references/changelog-archive.json"
+    ],
+    "patterns_involved": ["GEPA 假修复", "TAPO 规则退化", "GVU 系统不稳定", "跨技能传染", "DGM 局部最优陷阱"],
+    "anchor": "ABCD",
+    "sources": [
+      "GEPA — Nous Research, ICLR 2026",
+      "HyperAgents — Meta, ICLR 2026",
+      "CRESCENT — Sun et al., ACL 2025",
+      "TAPO/ReVeal — Jin et al., ICLR 2026",
+      "GVU Operator — Chojecki, 2025",
+      "Darwin Gödel Machine — Zhang et al., ICLR 2026"
+    ]
+  }
+]
